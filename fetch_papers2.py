@@ -101,11 +101,12 @@ if __name__ == "__main__":
 
     json = {
         "query": query, "variables":{
-            "query": "cat:cs.CV OR cat:cs.AI OR cat:cs.LG OR cat:cs.CL OR cat:cs.NE OR cat:stat.ML",
+            "query": args.search_query,
             "start": i,
             "maxResults": args.results_per_iteration
         }
     }
+
 
     entries = run_query(json)["data"]["entries"]
 
@@ -130,11 +131,6 @@ if __name__ == "__main__":
 
     # print some information
     print('Added %d papers, already had %d.' % (num_added, num_skipped))
-
-    # if len(parse.entries) == 0:
-    #   print('Received no results from arxiv. Rate limiting? Exiting. Restart later maybe.')
-    #   print(response)
-    #   break
 
     if num_added == 0 and args.break_on_no_added == 1:
       print('No new papers were added. Assuming no new papers exist. Exiting.')
