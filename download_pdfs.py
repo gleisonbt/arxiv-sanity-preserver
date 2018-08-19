@@ -15,10 +15,10 @@ numok = 0
 numtot = 0
 db = pickle.load(open(Config.db_path, 'rb'))
 for pid,j in db.items():
-  
-  pdfs = [x['href'] for x in j['links'] if x['type'] == 'application/pdf']
-  assert len(pdfs) == 1
-  pdf_url = pdfs[0] + '.pdf'
+  pdf_url = j['pdfUrl'] + '.pdf'   
+  # pdfs = [x['href'] for x in j['links'] if x['type'] == 'application/pdf']
+  # assert len(pdfs) == 1
+  # pdf_url = pdfs[0] + '.pdf'
   basename = pdf_url.split('/')[-1]
   fname = os.path.join(Config.pdf_dir, basename)
 
@@ -41,4 +41,3 @@ for pid,j in db.items():
   print('%d/%d of %d downloaded ok.' % (numok, numtot, len(db)))
   
 print('final number of papers downloaded okay: %d/%d' % (numok, len(db)))
-

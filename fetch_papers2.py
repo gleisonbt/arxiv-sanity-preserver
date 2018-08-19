@@ -90,13 +90,24 @@ if __name__ == "__main__":
     #                                                     i, args.results_per_iteration)
 
     query = """
-            query findPapers($query:String!, $start:Int!, $maxResults:Int!){
-                entries(searchQuery:$query, start:$start, maxResults:$maxResults, sortBy:"lastUpdatedDate",sortOrder:"descending"){
-                    id
-                    title
-                    updated
-                }
-                }
+            query findPapers($query: String!, $start: Int!, $maxResults: Int!) {
+            entries(searchQuery: $query, start: $start, maxResults: $maxResults, sortBy: "lastUpdatedDate", sortOrder: "descending") {
+              id
+              title
+              updated
+              pdfUrl
+              arxivPrimaryCategory {
+                term
+              }
+              authors
+              arxivUrl
+              summary
+              tags{
+                term
+              }
+              published
+            }
+          }
         """
 
     json = {

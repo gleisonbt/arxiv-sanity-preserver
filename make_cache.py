@@ -87,7 +87,7 @@ print('building an index for faster search...')
 search_dict = {}
 for pid,p in db.items():
   dict_title = makedict(p['title'], forceidf=5, scale=3)
-  dict_authors = makedict(' '.join(x['name'] for x in p['authors']), forceidf=5)
+  dict_authors = makedict(' '.join(x for x in p['authors']), forceidf=5)
   dict_categories = {x['term'].lower():5 for x in p['tags']}
   if 'and' in dict_authors: 
     # special case for "and" handling in authors list

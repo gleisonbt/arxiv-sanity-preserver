@@ -177,9 +177,9 @@ def encode_json(ps, n=10, send_images=True, send_abstracts=True):
     struct['title'] = p['title']
     struct['pid'] = idvv
     struct['rawpid'] = p['_rawid']
-    struct['category'] = p['arxiv_primary_category']['term']
-    struct['authors'] = [a['name'] for a in p['authors']]
-    struct['link'] = p['link']
+    struct['category'] = p['arxivPrimaryCategory']['term']
+    struct['authors'] = [a for a in p['authors']]
+    struct['link'] = p['arxivUrl']
     struct['in_library'] = 1 if p['_rawid'] in libids else 0
     if send_abstracts:
       struct['abstract'] = p['summary']
